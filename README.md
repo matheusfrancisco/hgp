@@ -1,5 +1,8 @@
 ## Hangarin Lottery problem
 
+how to run:
+`go build -o myapp` && `./myapp <filename>`
+
 
 ## Problem statement
 This problem is related to the Hungarian lottery. In case you are not familiar with it: players pick 5 distinct numbers from 1 to 90.

@@ -223,7 +223,51 @@ For each k, subtract the contribution of higher intersections:
 
 
 Results After Exclusion
+
     - countWinnerIntersection(5) = 2 
+
     - countWinnerIntersection(4) = 0 
+
     - countWinnerIntersection(3) = 0 
+
     - countWinnerIntersection(2) = 1
+
+
+The complexity of calling `countWinnerIntersection(k)` for k = 5, 4, 3, 2 depends on the number of combinations generated and the 
+operations performed for each combination. 
+
+Complexity for generating combinations:
+O((n k)) = n! / (k! (n - k)!)
+this is the number of combinations of k items from n.
+
+Complexity for Performing Intersection for Each Combination
+
+For each combination, the function:
+1. Takes the bitset of indices in the combination.
+2. Performs a bitwise AND operation across k bitsets, which takes: `O(m)` where m is the length of each bitset (number of `uint64` words).
+
+3. Counts the set bits in the resulting intersection, which also takes: `O(m)`
+
+Thus, for each combination, the total time complexity is: `O(k * m)` 
+
+
+tlrd: complexity and space for  k = 5, 4, 3, 2 
+
+Assumptions:
+    - n = 5: Number of bitsets (indices: `[0, 1, 2, 3, 4]`).
+    - m : Length of the bitset in `uint64` words.
+
+| \( k \) | \( \binom{n}{k} \) | Combinations | Time Complexity                      | Space Complexity                     |
+|--------|---------------------|--------------|---------------------------------------|---------------------------------------|
+| \( 5 \) | \( 1 \)             | `[[0, 1, 2, 3, 4]]` | \( O(1 \cdot 5 \cdot m) = O(5m) \)      | \( O(1 \cdot 5 + m) = O(m) \)         |
+| \( 4 \) | \( 5 \)             | `[[0, 1, 2, 3], ...]` | \( O(5 \cdot 4 \cdot m) = O(20m) \)     | \( O(5 \cdot 4 + m) = O(20 + m) \)    |
+| \( 3 \) | \( 10 \)            | `[[0, 1, 2], ...]`    | \( O(10 \cdot 3 \cdot m) = O(30m) \)    | \( O(10 \cdot 3 + m) = O(30 + m) \)   |
+| \( 2 \) | \( 10 \)            | `[[0, 1], ...]`       | \( O(10 \cdot 2 \cdot m) = O(20m) \)    | \( O(10 \cdot 2 + m) = O(20 + m) \)   |
+
+Combined Complexity: To compute `countWinnerIntersection(k)` for  k = 5, 4, 3, 2 ,
+the total complexity is the sum of the complexities for each value of  k: Total Time Complexity: O(5m + 20m + 30m + 20m) = O(75m)
+
+the space complexity for this part is  to allocate the combination O(C(n k) * k) each combinations
+is a list of k indices, and there are C(n k), the space for imtermediate intersection O(m) 
+where m is the length of the bitset then the complexity overall is
+`O(C(n k) * k + m)`

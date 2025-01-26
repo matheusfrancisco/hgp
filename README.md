@@ -257,12 +257,12 @@ Assumptions:
     - n = 5: Number of bitsets (indices: `[0, 1, 2, 3, 4]`).
     - m : Length of the bitset in `uint64` words.
 
-| \( k \) | \( \binom{n}{k} \) | Combinations | Time Complexity                      | Space Complexity                     |
+|  k  | C(n k) | Combinations | Time Complexity                      | Space Complexity                     |
 |--------|---------------------|--------------|---------------------------------------|---------------------------------------|
-| \( 5 \) | \( 1 \)             | `[[0, 1, 2, 3, 4]]` | \( O(1 \cdot 5 \cdot m) = O(5m) \)      | \( O(1 \cdot 5 + m) = O(m) \)         |
-| \( 4 \) | \( 5 \)             | `[[0, 1, 2, 3], ...]` | \( O(5 \cdot 4 \cdot m) = O(20m) \)     | \( O(5 \cdot 4 + m) = O(20 + m) \)    |
-| \( 3 \) | \( 10 \)            | `[[0, 1, 2], ...]`    | \( O(10 \cdot 3 \cdot m) = O(30m) \)    | \( O(10 \cdot 3 + m) = O(30 + m) \)   |
-| \( 2 \) | \( 10 \)            | `[[0, 1], ...]`       | \( O(10 \cdot 2 \cdot m) = O(20m) \)    | \( O(10 \cdot 2 + m) = O(20 + m) \)   |
+|  5     |  1             | `[[0, 1, 2, 3, 4]]` | O(1 * 5 * m) = O(5m)      | O(1 * 5 + m) = O(m)          |
+|  4 |  5             | `[[0, 1, 2, 3], ...]` |  O(5 * 4 * m) = O(20m)      | O(5 * 4 + m) = O(20 + m)     |
+|  3 |  10             | `[[0, 1, 2], ...]`    |  O(10 * 3 * m) = O(30m)     |  O(10 \cdot 3 + m) = O(30 + m)    |
+|  2 |  10             | `[[0, 1], ...]`       | O(10 * 2 * m) = O(20m)     | O(10 \cdot 2 + m) = O(20 + m)    |
 
 Combined Complexity: To compute `countWinnerIntersection(k)` for  k = 5, 4, 3, 2 ,
 the total complexity is the sum of the complexities for each value of  k: Total Time Complexity: O(5m + 20m + 30m + 20m) = O(75m)

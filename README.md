@@ -1,4 +1,4 @@
-## Hangarin Lottery problem
+## Hungarian Lottery problem
 
 how to run:
 `go build -o myapp` && `./myapp <filename>`
@@ -23,17 +23,18 @@ The players' numbers are known a few minutes before the show starts. In peak per
 * Document your ideas about how you could further improve the calculation speed or handle more players
 * Submit your code by email or share it privately (do not share it in public space like github), including instructions on how to build and run
 
-### Algorithm
+### Algorithm high level
 
 The algorithm is based on the following idea:
+- process the file and save it in a memory bitset for each number we will count it and save on the bitset
+- whejn we receive the winner numbers we will count the intersections of the numbers and return the count of the winners
 
-The first step we need to read the file and create our bitset struct, to
-read the file we create an type which will read and validate the file
+### Algorithm low level.
 
-`ReadFileInformation` is a function that reads the file and returns an struct `FileType`
-with the items of the file which is and `[][]int` 2D slice with all valid numbers
-this function took the time complexity of O(n*k) wheres n is the number of lines
-and k is in the worst case 5, beacuse we need to validate the numbers "3 4 5 6 7"
+We need to read the file and save it in memory `ReadFileInformation` is a function that reads 
+the file and returns a struct `FileType` with the items of the file which is and `[][]int` 2D slice 
+with all valid numbers this function took the time complexity of O(n*k) wheres n is the number of lines
+and k is in the worst case 5, beacuse we need to validate the numbers `"3 4 5 6 7"`
 so the complexity time is `O(n*5) = O(n)` in terms of memory this function 
 allocates `O(n*5)` which is the slice of the numbers, and holds the number of lines and
 the filename in the memory
